@@ -87,4 +87,27 @@ public class CounselServiceTest {
 
     }
 
+    @Test
+    void Should_ReturnUpdatedResponseOfExistCounselEntity_When_RequestUpdatedExistCounselInfo(){
+        Long findId = 1L;
+
+        Counsel entity = Counsel.builder()
+                .counselId(1L)
+                .name("Member Kim")
+                .build();
+
+        Request request = Request.builder()
+                .name("Member Kang")
+                .build();
+
+        // 서비스 레이어에 대한 테스트만 할 것이기 때문에 외부 모듈은 mocking 처리
+        when(counselRepository.save(ArgumentMatchers.any(Counsel.class))).thenReturn(entity);
+        when(counselRepository.findById(findId)).thenReturn(Optional.ofNullable(entity));
+
+        Response actual = counselService.update(findId, request);
+
+        assertThat(actual.getCounselId()).isSameAs(findId);
+        assertThat(actual.getName()).isSameAs(request.getName());
+    }
+
 }

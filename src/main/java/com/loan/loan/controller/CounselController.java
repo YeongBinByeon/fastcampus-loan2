@@ -25,11 +25,11 @@ public class CounselController extends AbstractController {
     return ok(counselService.get(counselId));
   }
 
-//  @PutMapping("/{counselId}")
-//  public ResponseDTO<Response> update(@PathVariable Long counselId, @RequestBody Request request){
-//    System.out.println("update");
-//    return ok(counselService.update(counselId, request));
-//  }
+  @PutMapping("/{counselId}")
+  public ResponseDTO<Response> update(@PathVariable Long counselId, @RequestBody Request request){
+    System.out.println("update");
+    return ok(counselService.update(counselId, request));
+  }
 //
 //  @DeleteMapping("/{counselId}")
 //  public ResponseDTO<Response> delete(@PathVariable Long counselId){
