@@ -30,10 +30,10 @@ public class ApplicationController extends AbstractController{
         return ok(applicationService.create(request));
     }
 
-//    @GetMapping("/{applicationId}")
-//    public ResponseDTO<Response> get(@PathVariable Long applicationId){
-//        return ok(applicationService.get(applicationId));
-//    }
+    @GetMapping("/{applicationId}")
+    public ResponseDTO<Response> get(@PathVariable Long applicationId){
+        return ok(applicationService.get(applicationId));
+    }
 //
 //    @PutMapping("/{applicationId}")
 //    public ResponseDTO<Response> update(@PathVariable Long applicationId, @RequestBody Request request){

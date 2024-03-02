@@ -61,20 +61,20 @@ public class ApplicationServiceTest {
     }
 
 
-//    @Test
-//    void Should_ReturnResponseOfExistApplicationEntity_When_RequestExistApplicationId(){
-//        Long findId = 1L;
-//
-//        Application entity = Application.builder()
-//                .applicationId(1L)
-//                .build();
-//
-//        when(applicationRepository.findById(findId)).thenReturn(Optional.ofNullable(entity));
-//
-//        Response actual = applicationService.get(findId);
-//
-//        assertThat(actual.getApplicationId()).isSameAs(findId);
-//    }
+    @Test
+    void Should_ReturnResponseOfExistApplicationEntity_When_RequestExistApplicationId(){
+        Long findId = 1L;
+
+        Application entity = Application.builder()
+                .applicationId(1L)
+                .build();
+
+        when(applicationRepository.findById(findId)).thenReturn(Optional.ofNullable(entity));
+
+        Response actual = applicationService.get(findId);
+
+        assertThat(actual.getApplicationId()).isSameAs(findId);
+    }
 //
 //    @Test
 //    void Should_ReturnUpdatedResponseOfExistApplicationEntity_When_RequestUpdateExistApplicationInfo(){

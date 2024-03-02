@@ -1,8 +1,11 @@
 package com.loan.loan.service;
 
-import com.loan.loan.dto.ApplicationDTO;
+import com.loan.loan.dto.ApplicationDTO.Response;
+import com.loan.loan.dto.ApplicationDTO.Request;
 
 public interface ApplicationService {
 
-    ApplicationDTO.Response create(ApplicationDTO.Request request);
+    Response create(Request request);
+
+    Response get(Long applicationId);
 }
