@@ -51,15 +51,15 @@ public class ApplicationDTO implements Serializable {
         private LocalDateTime updatedAt;
     }
 
-//    @NoArgsConstructor
-//    @AllArgsConstructor
-//    @Builder
-//    @Getter
-//    @Setter
-//    public static class AcceptTerms{
-//
-//        List<Long> acceptTermsIds;
-//    }
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    @Getter
+    @Setter
+    public static class AcceptTerms{
+
+        List<Long> acceptTermsIds;
+    }
 //
 //    @NoArgsConstructor
 //    @AllArgsConstructor

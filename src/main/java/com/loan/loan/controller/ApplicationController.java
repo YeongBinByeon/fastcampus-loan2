@@ -1,6 +1,7 @@
 package com.loan.loan.controller;
 
 
+import com.loan.loan.dto.ApplicationDTO.AcceptTerms;
 import com.loan.loan.dto.ApplicationDTO.Request;
 import com.loan.loan.dto.ApplicationDTO.Response;
 import com.loan.loan.dto.ResponseDTO;
@@ -46,11 +47,11 @@ public class ApplicationController extends AbstractController{
 
         return ok();
     }
-//
-//    @PostMapping("/{applicationId}/terms")
-//    public ResponseDTO<Boolean> acceptTerms(@PathVariable Long applicationId, @RequestBody AcceptTerms request) {
-//        return ok(applicationService.acceptTerms(applicationId, request));
-//    }
+
+    @PostMapping("/{applicationId}/terms")
+    public ResponseDTO<Boolean> acceptTerms(@PathVariable Long applicationId, @RequestBody AcceptTerms request) {
+        return ok(applicationService.acceptTerms(applicationId, request));
+    }
 //
 //    @PostMapping("/{applicationId}/files")
 //    public ResponseDTO<Void> upload(@PathVariable Long applicationId, MultipartFile file){
