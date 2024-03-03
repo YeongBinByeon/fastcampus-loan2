@@ -6,6 +6,7 @@ import com.loan.loan.dto.ApplicationDTO.Request;
 import com.loan.loan.dto.ApplicationDTO.Response;
 import com.loan.loan.dto.ResponseDTO;
 import com.loan.loan.service.ApplicationService;
+import com.loan.loan.service.FileStorageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -24,7 +25,7 @@ public class ApplicationController extends AbstractController{
 
     private final ApplicationService applicationService;
 
-//    private final FileStorageService fileStorageService;
+    private final FileStorageService fileStorageService;
 
     @PostMapping
     public ResponseDTO<Response> create(@RequestBody Request request){
@@ -52,12 +53,12 @@ public class ApplicationController extends AbstractController{
     public ResponseDTO<Boolean> acceptTerms(@PathVariable Long applicationId, @RequestBody AcceptTerms request) {
         return ok(applicationService.acceptTerms(applicationId, request));
     }
-//
-//    @PostMapping("/{applicationId}/files")
-//    public ResponseDTO<Void> upload(@PathVariable Long applicationId, MultipartFile file){
-//        fileStorageService.save(applicationId, file);
-//        return ok();
-//    }
+
+    @PostMapping("/{applicationId}/files")
+    public ResponseDTO<Void> upload(@PathVariable Long applicationId, MultipartFile file){
+        fileStorageService.save(applicationId, file);
+        return ok();
+    }
 //
 //    @GetMapping("/{applicationId}/files")
 //    public ResponseEntity<Resource> download(@PathVariable Long applicationId, @RequestParam(value = "fileName") String fileName){
