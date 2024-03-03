@@ -34,11 +34,11 @@ public class ApplicationController extends AbstractController{
     public ResponseDTO<Response> get(@PathVariable Long applicationId){
         return ok(applicationService.get(applicationId));
     }
-//
-//    @PutMapping("/{applicationId}")
-//    public ResponseDTO<Response> update(@PathVariable Long applicationId, @RequestBody Request request){
-//        return ok(applicationService.update(applicationId, request));
-//    }
+
+    @PutMapping("/{applicationId}")
+    public ResponseDTO<Response> update(@PathVariable Long applicationId, @RequestBody Request request){
+        return ok(applicationService.update(applicationId, request));
+    }
 //
 //    @DeleteMapping("/{applicationId}")
 //    public ResponseDTO<Void> delete(@PathVariable Long applicationId){
