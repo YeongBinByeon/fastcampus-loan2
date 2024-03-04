@@ -4,6 +4,7 @@ package com.loan.loan.controller;
 import com.loan.loan.dto.ApplicationDTO.AcceptTerms;
 import com.loan.loan.dto.ApplicationDTO.Request;
 import com.loan.loan.dto.ApplicationDTO.Response;
+import com.loan.loan.dto.FileDTO;
 import com.loan.loan.dto.ResponseDTO;
 import com.loan.loan.service.ApplicationService;
 import com.loan.loan.service.FileStorageService;
@@ -59,27 +60,27 @@ public class ApplicationController extends AbstractController{
         fileStorageService.save(applicationId, file);
         return ok();
     }
-//
-//    @GetMapping("/{applicationId}/files")
-//    public ResponseEntity<Resource> download(@PathVariable Long applicationId, @RequestParam(value = "fileName") String fileName){
-//        Resource file = fileStorageService.load(applicationId, fileName);
-//        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
-//                "attachment; filename=\"" + file.getFilename() + "\"").body(file);
-//    }
-//
-//    @GetMapping("/{applicationId}/files/infos")
-//    public ResponseDTO<List<FileDTO>> getFileInfos(@PathVariable Long applicationId){
-//
-//        List<FileDTO> fileInfos = fileStorageService.loadAll(applicationId).map(path ->{
-//            String fileName = path.getFileName().toString();
-//            return FileDTO.builder()
-//                    .name(fileName)
-//                    .url(MvcUriComponentsBuilder.fromMethodName(ApplicationController.class, "download", applicationId, fileName).build().toString())
-//                    .build();
-//        }).collect(Collectors.toList());
-//
-//        return ok(fileInfos);
-//    }
+
+    @GetMapping("/{applicationId}/files")
+    public ResponseEntity<Resource> download(@PathVariable Long applicationId, @RequestParam(value = "fileName") String fileName){
+        Resource file = fileStorageService.load(applicationId, fileName);
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
+                "attachment; filename=\"" + file.getFilename() + "\"").body(file);
+    }
+
+    @GetMapping("/{applicationId}/files/infos")
+    public ResponseDTO<List<FileDTO>> getFileInfos(@PathVariable Long applicationId){
+
+        List<FileDTO> fileInfos = fileStorageService.loadAll(applicationId).map(path ->{
+            String fileName = path.getFileName().toString();
+            return FileDTO.builder()
+                    .name(fileName)
+                    .url(MvcUriComponentsBuilder.fromMethodName(ApplicationController.class, "download", applicationId, fileName).build().toString())
+                    .build();
+        }).collect(Collectors.toList());
+
+        return ok(fileInfos);
+    }
 //
 //    @DeleteMapping("/{applicationId}/files")
 //    public ResponseDTO<Void> deleteAll(@PathVariable Long applicationId){

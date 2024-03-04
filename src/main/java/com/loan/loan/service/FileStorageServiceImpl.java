@@ -46,43 +46,43 @@ public class FileStorageServiceImpl implements FileStorageService{
         }
     }
 
-//    // 대출 신청 서류를 조회하는 기능
-//    @Override
-//    public Resource load(Long applicationId, String fileName) {
-//
+    // 대출 신청 서류를 조회하는 기능
+    @Override
+    public Resource load(Long applicationId, String fileName) {
+
 //        if(!isPresentApplication(applicationId)){
 //            throw new BaseException(ResultType.SYSTEM_ERROR);
 //        }
-//
-//        try {
+
+        try {
 //            String applicationPath = uploadPath.concat("/" + applicationId);
-//            Path file = Paths.get(applicationPath).resolve(fileName);
-//            Resource resource = new UrlResource(file.toUri());
-//
-//            if (resource.isReadable() || resource.exists()) {
-//                return resource;
-//            } else {
-//                throw new BaseException(ResultType.NOT_EXIST);
-//            }
-//        } catch (Exception e){
-//            throw new BaseException(ResultType.SYSTEM_ERROR);
-//        }
-//    }
-//
-//    @Override
-//    public Stream<Path> loadAll(Long applicationId) {
-//
+            Path file = Paths.get(uploadPath).resolve(fileName);
+            Resource resource = new UrlResource(file.toUri());
+
+            if (resource.isReadable() || resource.exists()) {
+                return resource;
+            } else {
+                throw new BaseException(ResultType.NOT_EXIST);
+            }
+        } catch (Exception e){
+            throw new BaseException(ResultType.SYSTEM_ERROR);
+        }
+    }
+
+    @Override
+    public Stream<Path> loadAll(Long applicationId) {
+
 //        if(!isPresentApplication(applicationId)){
 //            throw new BaseException(ResultType.SYSTEM_ERROR);
 //        }
-//
-//        try {
-//            String applicationPath = uploadPath.concat("/" + applicationId);
-//            return Files.walk(Paths.get(applicationPath), 1).filter(path -> !path.equals(Paths.get(applicationPath)));
-//        } catch (Exception e){
-//            throw new BaseException(ResultType.SYSTEM_ERROR);
-//        }
-//    }
+
+        try {
+            //String applicationPath = uploadPath.concat("/" + applicationId);
+            return Files.walk(Paths.get(uploadPath), 1).filter(path -> !path.equals(Paths.get(uploadPath)));
+        } catch (Exception e){
+            throw new BaseException(ResultType.SYSTEM_ERROR);
+        }
+    }
 //
 //    @Override
 //    public void deleteAll(Long applicationId) {
