@@ -81,12 +81,12 @@ public class ApplicationController extends AbstractController{
 
         return ok(fileInfos);
     }
-//
-//    @DeleteMapping("/{applicationId}/files")
-//    public ResponseDTO<Void> deleteAll(@PathVariable Long applicationId){
-//        fileStorageService.deleteAll(applicationId);
-//        return ok();
-//    }
+
+    @DeleteMapping("/{applicationId}/files")
+    public ResponseDTO<Void> deleteAll(@PathVariable Long applicationId){
+        fileStorageService.deleteAll(applicationId);
+        return ok();
+    }
 //
 //    @PutMapping("/{applicationId}/contract")
 //    public ResponseDTO<Response> contract(@PathVariable Long applicationId){

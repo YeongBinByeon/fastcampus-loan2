@@ -83,20 +83,20 @@ public class FileStorageServiceImpl implements FileStorageService{
             throw new BaseException(ResultType.SYSTEM_ERROR);
         }
     }
-//
-//    @Override
-//    public void deleteAll(Long applicationId) {
+
+    @Override
+    public void deleteAll(Long applicationId) {
 //        if(!isPresentApplication(applicationId)){
 //            throw new BaseException(ResultType.SYSTEM_ERROR);
 //        }
-//
-//        String applicationPath = uploadPath.concat("/" + applicationId);
-//
-//        // 넘긴 경로 하위 모든 파일들 삭제하는 코드..
-//        // 본 프로젝트에서는 설정한 file 폴더 포함 file 폴더 하위에 있는 모든 파일들 삭제되는 것 확인함.
-//        // 너무 위험한 코드라 확인 후 주석 처리 함
-//        //FileSystemUtils.deleteRecursively(Paths.get(applicationPath).toFile());
-//    }
+
+        String applicationPath = uploadPath.concat("/" + applicationId);
+
+        // 넘긴 경로 하위 모든 파일들 삭제하는 코드..
+        // 본 프로젝트에서는 설정한 file 폴더 포함 file 폴더 하위에 있는 모든 파일들 삭제되는 것 확인함.
+        // 너무 위험한 코드라 확인 후 주석 처리 함
+        //FileSystemUtils.deleteRecursively(Paths.get(applicationPath).toFile());
+    }
 //
 //    // application이 존재하는지 확인하는 메서드
 //    private boolean isPresentApplication(Long applicationId){

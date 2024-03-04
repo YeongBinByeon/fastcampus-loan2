@@ -13,6 +13,6 @@ public interface FileStorageService {
     Resource load(Long applicationId, String fileName);
 
     Stream<Path> loadAll(Long applicationId);
-//
-//    void deleteAll(Long applicationId);
+
+    void deleteAll(Long applicationId);
 }
