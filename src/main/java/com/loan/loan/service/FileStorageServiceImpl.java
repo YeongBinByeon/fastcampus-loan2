@@ -23,23 +23,23 @@ public class FileStorageServiceImpl implements FileStorageService{
     @Value("${spring.servlet.multipart.location}")
     private String uploadPath;
 
-//    private final ApplicationRepository applicationRepository;
+    private final ApplicationRepository applicationRepository;
 
     @Override
     public void save(Long applicationId, MultipartFile file) {
-//        if(!isPresentApplication(applicationId)){
-//            throw new BaseException(ResultType.SYSTEM_ERROR);
-//        }
+        if(!isPresentApplication(applicationId)){
+            throw new BaseException(ResultType.SYSTEM_ERROR);
+        }
 
         try{
-//            String applicationPath = uploadPath.concat("/" + applicationId);
-//            Path directoryPath = Path.of(applicationPath);
-//            //applicationId에 해당하는 디렉터리가 존재하지 않을 경우, 해당 id의 디렉터리 생성하는 코드
-//            if(!Files.exists(directoryPath)){
-//                Files.createDirectory(directoryPath);
-//            }
+            String applicationPath = uploadPath.concat("/" + applicationId);
+            Path directoryPath = Path.of(applicationPath);
+            //applicationId에 해당하는 디렉터리가 존재하지 않을 경우, 해당 id의 디렉터리 생성하는 코드
+            if(!Files.exists(directoryPath)){
+                Files.createDirectory(directoryPath);
+            }
 
-            Files.copy(file.getInputStream(), Paths.get(uploadPath).resolve(file.getOriginalFilename()),
+            Files.copy(file.getInputStream(), Paths.get(applicationPath).resolve(file.getOriginalFilename()),
                     StandardCopyOption.REPLACE_EXISTING);
         } catch (Exception e) {
             throw new BaseException(ResultType.SYSTEM_ERROR);
@@ -50,13 +50,13 @@ public class FileStorageServiceImpl implements FileStorageService{
     @Override
     public Resource load(Long applicationId, String fileName) {
 
-//        if(!isPresentApplication(applicationId)){
-//            throw new BaseException(ResultType.SYSTEM_ERROR);
-//        }
+        if(!isPresentApplication(applicationId)){
+            throw new BaseException(ResultType.SYSTEM_ERROR);
+        }
 
         try {
-//            String applicationPath = uploadPath.concat("/" + applicationId);
-            Path file = Paths.get(uploadPath).resolve(fileName);
+            String applicationPath = uploadPath.concat("/" + applicationId);
+            Path file = Paths.get(applicationPath).resolve(fileName);
             Resource resource = new UrlResource(file.toUri());
 
             if (resource.isReadable() || resource.exists()) {
@@ -72,13 +72,13 @@ public class FileStorageServiceImpl implements FileStorageService{
     @Override
     public Stream<Path> loadAll(Long applicationId) {
 
-//        if(!isPresentApplication(applicationId)){
-//            throw new BaseException(ResultType.SYSTEM_ERROR);
-//        }
+        if(!isPresentApplication(applicationId)){
+            throw new BaseException(ResultType.SYSTEM_ERROR);
+        }
 
         try {
-            //String applicationPath = uploadPath.concat("/" + applicationId);
-            return Files.walk(Paths.get(uploadPath), 1).filter(path -> !path.equals(Paths.get(uploadPath)));
+            String applicationPath = uploadPath.concat("/" + applicationId);
+            return Files.walk(Paths.get(applicationPath), 1).filter(path -> !path.equals(Paths.get(applicationPath)));
         } catch (Exception e){
             throw new BaseException(ResultType.SYSTEM_ERROR);
         }
@@ -86,9 +86,9 @@ public class FileStorageServiceImpl implements FileStorageService{
 
     @Override
     public void deleteAll(Long applicationId) {
-//        if(!isPresentApplication(applicationId)){
-//            throw new BaseException(ResultType.SYSTEM_ERROR);
-//        }
+        if(!isPresentApplication(applicationId)){
+            throw new BaseException(ResultType.SYSTEM_ERROR);
+        }
 
         String applicationPath = uploadPath.concat("/" + applicationId);
 
@@ -97,9 +97,9 @@ public class FileStorageServiceImpl implements FileStorageService{
         // 너무 위험한 코드라 확인 후 주석 처리 함
         //FileSystemUtils.deleteRecursively(Paths.get(applicationPath).toFile());
     }
-//
-//    // application이 존재하는지 확인하는 메서드
-//    private boolean isPresentApplication(Long applicationId){
-//        return applicationRepository.findById(applicationId).isPresent();
-//    }
+
+    // application이 존재하는지 확인하는 메서드
+    private boolean isPresentApplication(Long applicationId){
+        return applicationRepository.findById(applicationId).isPresent();
+    }
 }
