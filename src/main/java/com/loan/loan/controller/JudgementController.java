@@ -19,15 +19,15 @@ public class JudgementController extends AbstractController{
         return ok(judgementService.create(request));
     }
 
-//    @GetMapping("/{judgementId}")
-//    public ResponseDTO<JudgementDTO.Response> get(@PathVariable Long judgementId){
-//        return ok(judgementService.get(judgementId));
-//    }
-//
-//    @GetMapping("/applications/{applicationId}")
-//    public ResponseDTO<JudgementDTO.Response> getJudgementOfApplication(@PathVariable Long applicationId){
-//        return ok(judgementService.getJudgementOfApplication(applicationId));
-//    }
+    @GetMapping("/{judgementId}")
+    public ResponseDTO<JudgementDTO.Response> get(@PathVariable Long judgementId){
+        return ok(judgementService.get(judgementId));
+    }
+
+    @GetMapping("/applications/{applicationId}")
+    public ResponseDTO<JudgementDTO.Response> getJudgementOfApplication(@PathVariable Long applicationId){
+        return ok(judgementService.getJudgementOfApplication(applicationId));
+    }
 //
 //    @PutMapping("/{judgementId}")
 //    public ResponseDTO<JudgementDTO.Response> update(@PathVariable Long judgementId, @RequestBody JudgementDTO.Request request){
