@@ -133,25 +133,25 @@ class JudgementServiceTest {
 
         Assertions.assertThat(entity.getIsDeleted()).isTrue();
     }
-//
-//    @Test
-//    void Should_ReturnUpdateResponseOfExistApplicationEntity_When_RequestGrantApprovalAmountOfJudgementInfo(){
-//        Judgement judgementEntity = Judgement.builder()
-//                .name("Member Kim")
-//                .applicationId(1L)
-//                .approvalAmount(BigDecimal.valueOf(5000000))
-//                .build();
-//
-//        Application applicationEntity = Application.builder()
-//                .applicationId(1L)
-//                .build();
-//
-//        when(judgementRepository.findById(1L)).thenReturn(Optional.ofNullable(judgementEntity));
-//        when(applicationRepository.findById(1L)).thenReturn(Optional.ofNullable(applicationEntity));
-//        when(applicationRepository.save(ArgumentMatchers.any(Application.class))).thenReturn(applicationEntity);
-//        ApplicationDTO.GrantAmount actual = judgementService.grant(1L);
-//
-//        Assertions.assertThat(actual.getApplicationId()).isSameAs(1L);
-//        Assertions.assertThat(actual.getApprovalAmount()).isSameAs(judgementEntity.getApprovalAmount());
-//    }
+
+    @Test
+    void Should_ReturnUpdateResponseOfExistApplicationEntity_When_RequestGrantApprovalAmountOfJudgementInfo(){
+        Judgement judgementEntity = Judgement.builder()
+                .name("Member Kim")
+                .applicationId(1L)
+                .approvalAmount(BigDecimal.valueOf(5000000))
+                .build();
+
+        Application applicationEntity = Application.builder()
+                .applicationId(1L)
+                .build();
+
+        when(judgementRepository.findById(1L)).thenReturn(Optional.ofNullable(judgementEntity));
+        when(applicationRepository.findById(1L)).thenReturn(Optional.ofNullable(applicationEntity));
+        when(applicationRepository.save(ArgumentMatchers.any(Application.class))).thenReturn(applicationEntity);
+        ApplicationDTO.GrantAmount actual = judgementService.grant(1L);
+
+        Assertions.assertThat(actual.getApplicationId()).isSameAs(1L);
+        Assertions.assertThat(actual.getApprovalAmount()).isSameAs(judgementEntity.getApprovalAmount());
+    }
 }

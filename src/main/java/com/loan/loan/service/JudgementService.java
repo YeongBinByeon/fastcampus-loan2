@@ -17,5 +17,5 @@ public interface JudgementService {
 
     void delete(Long judgementId);
 
-//    ApplicationDTO.GrantAmount grant(Long judgementId);
+    ApplicationDTO.GrantAmount grant(Long judgementId);
 }

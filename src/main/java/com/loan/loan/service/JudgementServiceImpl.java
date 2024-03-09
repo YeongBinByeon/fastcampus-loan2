@@ -1,7 +1,9 @@
 package com.loan.loan.service;
 
 
+import com.loan.loan.domain.Application;
 import com.loan.loan.domain.Judgement;
+import com.loan.loan.dto.ApplicationDTO;
 import com.loan.loan.dto.JudgementDTO;
 import com.loan.loan.exception.BaseException;
 import com.loan.loan.exception.ResultType;
@@ -86,25 +88,25 @@ public class JudgementServiceImpl implements JudgementService {
 
         judgementRepository.save(judgement);
     }
-//
-//    @Override
-//    public ApplicationDTO.GrantAmount grant(Long judgementId) {
-//        Judgement judgement = judgementRepository.findById(judgementId).orElseThrow(()->{
-//            throw new BaseException(ResultType.SYSTEM_ERROR);
-//        });
-//
-//        Long applicationId = judgement.getApplicationId();
-//        Application application = applicationRepository.findById(applicationId).orElseThrow(()->{
-//            throw new BaseException(ResultType.SYSTEM_ERROR);
-//        });
-//
-//        BigDecimal approvalAmount = judgement.getApprovalAmount();
-//        application.setApprovalAmount(approvalAmount);
-//
-//        applicationRepository.save(application);
-//
-//        return modelMapper.map(application, ApplicationDTO.GrantAmount.class);
-//    }
+
+    @Override
+    public ApplicationDTO.GrantAmount grant(Long judgementId) {
+        Judgement judgement = judgementRepository.findById(judgementId).orElseThrow(()->{
+            throw new BaseException(ResultType.SYSTEM_ERROR);
+        });
+
+        Long applicationId = judgement.getApplicationId();
+        Application application = applicationRepository.findById(applicationId).orElseThrow(()->{
+            throw new BaseException(ResultType.SYSTEM_ERROR);
+        });
+
+        BigDecimal approvalAmount = judgement.getApprovalAmount();
+        application.setApprovalAmount(approvalAmount);
+
+        applicationRepository.save(application);
+
+        return modelMapper.map(application, ApplicationDTO.GrantAmount.class);
+    }
 
     private boolean isPresentApplication(Long applicationId){
         return applicationRepository.findById(applicationId).isPresent();
