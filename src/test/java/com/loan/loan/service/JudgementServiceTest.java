@@ -118,20 +118,21 @@ class JudgementServiceTest {
         Assertions.assertThat(actual.getName()).isSameAs(request.getName());
         Assertions.assertThat(actual.getApprovalAmount()).isSameAs(request.getApprovalAmount());
     }
-//
-//    @Test
-//    void Should_DeletedJudgementEntity_When_RequestDeleteExistJudgementInfo(){
-//        Judgement entity = Judgement.builder()
-//                .judgementId(1L)
-//                .build();
-//
-//        when(judgementRepository.findById(1L)).thenReturn(Optional.ofNullable(entity));
-//        when(judgementRepository.save(ArgumentMatchers.any(Judgement.class))).thenReturn(entity);
-//
-//        judgementService.delete(1L);
-//
-//        Assertions.assertThat(entity.getIsDeleted()).isTrue();
-//    }
+
+    @Test
+    void Should_DeletedJudgementEntity_When_RequestDeleteExistJudgementInfo(){
+        Judgement entity = Judgement.builder()
+                .judgementId(1L)
+                .build();
+
+        when(judgementRepository.findById(1L)).thenReturn(Optional.ofNullable(entity));
+        // 아래 save 메서드 모킹은 없어도 테스트 성공함.
+        //when(judgementRepository.save(ArgumentMatchers.any(Judgement.class))).thenReturn(entity);
+
+        judgementService.delete(1L);
+
+        Assertions.assertThat(entity.getIsDeleted()).isTrue();
+    }
 //
 //    @Test
 //    void Should_ReturnUpdateResponseOfExistApplicationEntity_When_RequestGrantApprovalAmountOfJudgementInfo(){

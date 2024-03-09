@@ -33,12 +33,12 @@ public class JudgementController extends AbstractController{
     public ResponseDTO<JudgementDTO.Response> update(@PathVariable Long judgementId, @RequestBody JudgementDTO.Request request){
         return ok(judgementService.update(judgementId, request));
     }
-//
-//    @DeleteMapping("/{judgementId}")
-//    public ResponseDTO<Void> delete(@PathVariable Long judgementId){
-//        judgementService.delete(judgementId);
-//        return ok();
-//    }
+
+    @DeleteMapping("/{judgementId}")
+    public ResponseDTO<Void> delete(@PathVariable Long judgementId){
+        judgementService.delete(judgementId);
+        return ok();
+    }
 //
 //    @PatchMapping("/{judgementId}/grants")
 //    public ResponseDTO<ApplicationDTO.GrantAmount> grant(@PathVariable Long judgementId){

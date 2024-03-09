@@ -14,8 +14,8 @@ public interface JudgementService {
     Response getJudgementOfApplication(Long applicationId);
 
     Response update(Long judgementId, Request request);
-//
-//    void delete(Long judgementId);
-//
+
+    void delete(Long judgementId);
+
 //    ApplicationDTO.GrantAmount grant(Long judgementId);
 }
