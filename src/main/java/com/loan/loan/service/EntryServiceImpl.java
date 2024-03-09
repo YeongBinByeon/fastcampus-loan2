@@ -48,16 +48,16 @@ public class EntryServiceImpl implements EntryService {
         return modelMapper.map(entry, EntryDTO.Response.class);
     }
 
-//    @Override
-//    public EntryDTO.Response get(Long applicationId) {
-//        Optional<Entry> entry = entryRepository.findByApplicationId(applicationId);
-//
-//        if(entry.isPresent()){
-//            return modelMapper.map(entry, EntryDTO.Response.class);
-//        }else{
-//            return null;
-//        }
-//    }
+    @Override
+    public EntryDTO.Response get(Long applicationId) {
+        Optional<Entry> entry = entryRepository.findByApplicationId(applicationId);
+
+        if(entry.isPresent()){
+            return modelMapper.map(entry, EntryDTO.Response.class);
+        }else{
+            return null;
+        }
+    }
 //
 //    @Override
 //    public EntryDTO.UpdateResponse update(Long entryId, EntryDTO.Request request) {

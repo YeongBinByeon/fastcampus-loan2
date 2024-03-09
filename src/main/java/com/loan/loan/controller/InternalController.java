@@ -22,10 +22,10 @@ public class InternalController extends AbstractController{
         return ok(entryService.create(applicationId, request));
     }
 
-//    @GetMapping("{applicationId}/entries")
-//    public ResponseDTO<EntryDTO.Response> get(@PathVariable Long applicationId){
-//        return ok(entryService.get(applicationId));
-//    }
+    @GetMapping("{applicationId}/entries")
+    public ResponseDTO<EntryDTO.Response> get(@PathVariable Long applicationId){
+        return ok(entryService.get(applicationId));
+    }
 //
 //    @PutMapping("/entries/{entryId}")
 //    public ResponseDTO<EntryDTO.UpdateResponse> update(@PathVariable Long entryId, @RequestBody EntryDTO.Request request){
